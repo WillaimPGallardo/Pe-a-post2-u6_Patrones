@@ -1,13 +1,32 @@
 package com.universidad.antipatrones;
 
+import com.universidad.antipatrones.model.Pedido;
+import com.universidad.antipatrones.legacy.ProcesadorPedidos;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.List;
+
 @SpringBootApplication
-public class SpaghettiLabApplication {
+public class SpaghettiLabApplication implements CommandLineRunner {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpaghettiLabApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SpaghettiLabApplication.class, args);
+    }
 
+    @Override
+    public void run(String... args) {
+
+        ProcesadorPedidos procesador = new ProcesadorPedidos();
+
+        List<Pedido> pedidos = List.of(
+                new Pedido("P001", "VIP", 1200.0, "VIPEXTRA"),
+                new Pedido("P002", "VIP", 600.0, "VIP20"),
+                new Pedido("P003", "PREMIUM", 300.0, "PREM10"),
+                new Pedido("P004", "ESTANDAR", 150.0, "FIRST50")
+        );
+
+        pedidos.forEach(procesador::procesarPedido);
+    }
 }
