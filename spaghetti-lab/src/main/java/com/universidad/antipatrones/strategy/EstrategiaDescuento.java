@@ -1,5 +1,8 @@
 package com.universidad.antipatrones.strategy;
 
-public class EstrategiaDescuento {
-    
+import com.universidad.antipatrones.model.Pedido;
+
+public interface EstrategiaDescuento {
+    double calcular(Pedido pedido);
+    String getNombre();
 }
