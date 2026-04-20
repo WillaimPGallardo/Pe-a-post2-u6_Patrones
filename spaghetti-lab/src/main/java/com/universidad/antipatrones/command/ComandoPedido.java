@@ -1,5 +1,5 @@
 package com.universidad.antipatrones.command;
 
-public class ComandoPedido {
-    
+public interface ComandoPedido {
+    void ejecutar();
 }

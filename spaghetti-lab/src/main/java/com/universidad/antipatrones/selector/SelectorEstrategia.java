@@ -1,5 +1,18 @@
 package com.universidad.antipatrones.selector;
 
+import com.universidad.antipatrones.strategy.*;
+
+import java.util.Map;
+
 public class SelectorEstrategia {
-    
+
+    private final Map<String, EstrategiaDescuento> estrategias = Map.of(
+            "VIP", new DescuentoVIP(),
+            "PREMIUM", new DescuentoPremium(),
+            "ESTANDAR", new DescuentoEstandar()
+    );
+
+    public EstrategiaDescuento seleccionar(String tipoCliente) {
+        return estrategias.getOrDefault(tipoCliente, estrategias.get("ESTANDAR"));
+    }
 }
